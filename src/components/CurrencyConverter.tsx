@@ -58,6 +58,20 @@ const CurrencyConverter = () => {
 
   function getExchangeRate() { return exchangeRates[toCurrency] ?? 0; }
 
+  function handleProceedToExchange() {
+    if (!amount || parseFloat(amount) <= 0) return;
+    
+    const params = new URLSearchParams({
+      amount: amount,
+      from: fromCurrency,
+      to: toCurrency,
+      rate: getExchangeRate().toString(),
+      txId: 'bc-bfbe36af-6d10-4662-8093-84df8efbd406'
+    });
+    
+    navigate(`/billing-confirmation?${params.toString()}`);
+  }
+
   return (
     <Card className="w-full max-w-2xl shadow-[var(--shadow-elegant)] border-border/50 backdrop-blur-xl bg-card/95 animate-scale-in">
       <CardHeader className="space-y-1">
@@ -110,14 +124,23 @@ const CurrencyConverter = () => {
         </div>
 
         {!!exchangeRates[toCurrency] && (
-          <div className="pt-4 border-t border-border">
+          <div className="pt-4 border-t border-border space-y-4">
             <div className="flex justify-between items-center text-sm">
               <span className="text-muted-foreground">Exchange Rate</span>
               <span className="font-semibold">1 {fromCurrency} = {getExchangeRate().toFixed(4)} {toCurrency}</span>
             </div>
-            <div className="mt-2 text-sm text-muted-foreground">
+            <div className="text-sm text-muted-foreground">
               = {amount || '0'} {fromCurrency} → <span className="font-semibold text-foreground">{Number.isFinite(convertedAmount) ? convertedAmount.toLocaleString(undefined, { maximumFractionDigits: 2 }) : '0.00'}</span> {toCurrency}
             </div>
+            
+            <Button 
+              onClick={handleProceedToExchange}
+              disabled={!amount || parseFloat(amount) <= 0 || loading}
+              className="w-full h-12 text-base font-semibold bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              <CreditCard className="h-5 w-5 mr-2" />
+              Proceed to Exchange
+            </Button>
           </div>
         )}
       </CardContent>
