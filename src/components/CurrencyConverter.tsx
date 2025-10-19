@@ -31,7 +31,7 @@ const CurrencyConverter = () => {
           .concat([fromCurrency])
           .filter((v, i, a) => a.indexOf(v) === i)
           .sort()
-          .map((code) => ({ name: code }));
+          .map((code) => ({ code, name: code }));
         setCurrencies(list);
       }
     } catch {
@@ -103,7 +103,7 @@ const CurrencyConverter = () => {
               className="w-[200px] h-14 text-base font-medium rounded-md border bg-background px-3"
             >
               {(currencies.length ? currencies : [{ code: toCurrency, name: toCurrency }]).map((c) => (
-                <option key={c.code} value={c.code}>{c.code} - {c.name}</option>
+                <option key={c.code} value={c.code}>{c.code}</option>
               ))}
             </select>
           </div>
