@@ -31,7 +31,7 @@ const CurrencyConverter = () => {
           .concat([fromCurrency])
           .filter((v, i, a) => a.indexOf(v) === i)
           .sort()
-          .map((code) => ({ code, name: code }));
+          .map((code) => ({ name: code }));
         setCurrencies(list);
       }
     } catch {
