@@ -49,7 +49,7 @@ currencyConvertor/
 
 ## Scripts
 - `npm run dev`: Start the Vite dev server
-- `npm run build`: Build the app
+- `npm run build`: Build the application
 - `npm run preview`: Preview the production build
 
 ## Notes
