@@ -77,7 +77,8 @@ const CurrencyConverter = () => {
               className="w-[200px] h-14 text-base font-medium rounded-md border bg-background px-3"
             >
               {(currencies.length ? currencies : [{ code: fromCurrency, name: fromCurrency }]).map((c) => (
-                <option key={c.code} value={c.code}>{c.code} - {c.name}</option>
+                <option key={c.code} value={c.code}>{c.code}</option>
+
               ))}
             </select>
           </div>
