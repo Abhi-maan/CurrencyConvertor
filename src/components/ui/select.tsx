@@ -12,7 +12,7 @@ export function Select({ value, onValueChange, children }: SelectProps) {
     <div data-select-id={id} className="relative">
       {children instanceof Array
         ? children.map((child) =>
-            // @ts-expect-error internal clone
+            // internal clone
             child.type && child.type.__selectTrigger
               ? { ...child, props: { ...child.props, value, onValueChange } }
               : child
